@@ -1,0 +1,14 @@
+{
+    "totalSwitch":"Main Switch",
+    "totalSwitchDesc":"The Inner Switch of this plugin",
+    "pluginBlacklistTitle":"Black List of Bazaar",
+    "pluginBlacklistDesc":"Imput the package name of plugins/ themes/ icons/ templates/ widgets you don't wanna see. Seperate by English or Chinese half-width commas, i.e., \",\" or\"，\".",
+    "pluginBlacklistNoteTitle":"Notes",
+    "pluginBlacklistNoteDesc":"You can take notes here, for example write down why you don't wanna see such a plugin",
+    "hintTitle":"About",
+    "hintDesc":"<ul><li>● By <a href='https://github.com/zxkmm'>zxkmm</a> and open source under the MIT license.</li><li>● Please star⭐ my GitHub repository if you like this plugin.</li><li>● Link: <a href='https://github.com/zxkmm/siyuan_marketplace_blacklist'>https://github.com/zxkmm/siyuan_marketplace_blacklist</a></li><li>● Please keep respect to the author of those item you have hidden",
+    "uninstall_hint":"siyuan_marketplace_blacklist: Uninstall successfully"
+
+
+
+}

@@ -7,12 +7,10 @@ import { svelte } from "@sveltejs/vite-plugin-svelte"
 import zipPack from "vite-plugin-zip-pack";
 import fg from 'fast-glob';
 
-import vitePluginYamlI18n from './yaml-plugin';
-
 const args = minimist(process.argv.slice(2))
 const isWatch = args.watch || args.w || false
-const devDistDir = "dev"
-const distDir = isWatch ? devDistDir : "dist"
+const devDistDir = "./dev"
+const distDir = isWatch ? devDistDir : "./dist"
 
 console.log("isWatch=>", isWatch)
 console.log("distDir=>", distDir)
@@ -27,11 +25,6 @@ export default defineConfig({
     plugins: [
         svelte(),
 
-        vitePluginYamlI18n({
-            inDir: 'public/i18n',
-            outDir: `${distDir}/i18n`
-        }),
-
         viteStaticCopy({
             targets: [
                 {
@@ -39,7 +32,7 @@ export default defineConfig({
                     dest: "./",
                 },
                 {
-                    src: "./plugin.json",
+                    src: "./icon.png",
                     dest: "./",
                 },
                 {
@@ -47,9 +40,13 @@ export default defineConfig({
                     dest: "./",
                 },
                 {
-                    src: "./icon.png",
+                    src: "./plugin.json",
                     dest: "./",
-                }
+                },
+                {
+                    src: "./src/i18n/**",
+                    dest: "./i18n/",
+                },
             ],
         }),
     ],
@@ -69,7 +66,7 @@ export default defineConfig({
         emptyOutDir: false,
 
         // 构建后是否生成 source map 文件
-        sourcemap: isWatch ? 'inline' : false,
+        sourcemap: false,
 
         // 设置为 false 可以禁用最小化混淆
         // 或是用来指定是应用哪种混淆器
@@ -94,7 +91,7 @@ export default defineConfig({
                             name: 'watch-external',
                             async buildStart() {
                                 const files = await fg([
-                                    'public/i18n/**',
+                                    'src/i18n/*.json',
                                     './README*.md',
                                     './plugin.json'
                                 ]);
