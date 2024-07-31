@@ -1,19 +1,14 @@
-# Siyuan Marketplace Blacklist  
+Streamer Mode: Avoiding the Leakage of Sensitive Information During Live Streaming
 
- - Hide the plugins/themes/icons/templates/widgets you don't want to see in the Siyuan marketplace. Once added to the blacklist, you won't encounter them again.  
+# What is Streamer Mode?
+Streamer Mode is a special feature provided by some software, particularly gaming and live streaming applications, designed to protect users' privacy and security during live streaming or video recording. When Streamer Mode is activated, the software automatically hides or blocks certain sensitive information, such as:
 
-# Use Cases  
+1. **Personal Information**: Usernames, email addresses, real names, etc.
+2. **Notifications**: Pop-up notifications or messages from other applications to prevent private information from being leaked during live streaming.
+3. **IP Address**: Prevents viewers from obtaining the streamer's IP address through the live stream, thereby preventing malicious attacks.
+4. **Links**: Automatically blocks or blurs links that may contain sensitive information.
 
-This plugin is designed for the following scenarios:  
-
-  - When you find a plugin incompatible with your environment and want to avoid accidental downloads that may lead to compatibility issues.  
-  - When you come across a plugin that doesn't align with your usage preferences and want to prevent accidental downloads.  
-
-# Note  
-
-  - Even if you prefer not to see specific plugins, please maintain a friendly attitude towards the original authors of the plugins you want to hide and respect their efforts. Thank you!  
-  - This plugin is open-source under the MIT license, with no online activities and no capability to fetch malicious code remotely.  
-  - Only the normal usage of the default two themes is guaranteed.  
+This allows streamers to focus on their content without worrying about privacy leaks or harassment, enhancing the security and privacy protection of live streaming.
 
 # Disclaimer  
 
