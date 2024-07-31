@@ -1,8 +1,8 @@
 {
   "name": "siyuan_streamer_mode",
   "author": "zxkmm",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.0.3",
+  "url": "https://github.com/zxkmm/siyuan_streamer_mode",
+  "version": "0.0.2",
   "minAppVersion": "2.11.4",
   "backends": [
     "windows",

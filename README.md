@@ -13,7 +13,7 @@ This allows streamers to focus on their content without worrying about privacy l
 # Disclaimer  
 
  - If you find this plugin useful, please consider giving my GitHub repository a free star⭐️. Thank you!  
- - Link: https://github.com/zxkmm/siyuan_rmv_btn  
+ - Link: https://github.com/zxkmm/siyuan_streamer_mode  
 
 # Links  
 

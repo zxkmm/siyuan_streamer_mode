@@ -22,7 +22,7 @@ Streamer Mode 是一些软件（尤其是游戏和直播软件）提供的一种
 
 # 备注  
 如果您喜欢这个插件，请给我的 GitHub 仓库点亮免费的星星⭐（Star）, 谢谢!   
-链接：https://github.com/zxkmm/siyuan_rmv_btn    
+链接：https://github.com/zxkmm/siyuan_streamer_mode  
 
 # 链接  
 repo/源码：https://github.com/zxkmm/siyuan_streamer_mode  
