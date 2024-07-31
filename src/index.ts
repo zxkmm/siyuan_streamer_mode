@@ -117,6 +117,18 @@ export default class siyuan_streamer_mode extends Plugin {
           this.blackOutKeyWords(_blacklist_words_)
         );
       }
+
+      if (this.settingUtils.get("eventBusLoadedProtyleStatic")) {
+        this.eventBus.on("loaded-protyle-static", () =>
+          this.blackOutKeyWords(_blacklist_words_)
+        );
+      }
+
+      if (this.settingUtils.get("eventBusLoadedProtyleDynamic")) {
+        this.eventBus.on("loaded-protyle-dynamic", () =>
+          this.blackOutKeyWords(_blacklist_words_)
+        );
+      }
     }
   }
 
@@ -158,6 +170,20 @@ export default class siyuan_streamer_mode extends Plugin {
       type: "checkbox",
       title: this.i18n.eventBusWsMainSwitch,
       description: this.i18n.eventBusWsMainSwitchDesc,
+    });
+    this.settingUtils.addItem({
+      key: "eventBusLoadedProtyleStatic",
+      value: false,
+      type: "checkbox",
+      title: this.i18n.eventBusLoadedProtyleStatic,
+      description: this.i18n.eventBusLoadedProtyleStaticDesc,
+    });
+    this.settingUtils.addItem({
+      key: "eventBusLoadedProtyleDynamic",
+      value: false,
+      type: "checkbox",
+      title: this.i18n.eventBusLoadedProtyleDynamic,
+      description: this.i18n.eventBusLoadedProtyleDynamicDesc,
     });
     this.settingUtils.addItem({
       key: "keywordsBlacklist",
