@@ -565,7 +565,7 @@ export default class siyuan_streamer_mode extends Plugin {
     // if (this.settingUtils.get("totalSwitch")) {
     //   this.init_event_bus_handler();
     // }
-    showMessage("主播模式插件：很抱歉，目前由于发现一个严重漏洞导致该插件暂时禁用。");
+    showMessage("主播模式插件：很抱歉，目前由于发现一个小技术缺陷导致该插件暂时禁用。");
   }
 
   async onunload() {

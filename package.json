@@ -1,6 +1,6 @@
 {
   "name": "siyuan_streamer_mode",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "description": "Streamer mode for SiYuan.",
   "repository": "https://github.com/zxkmm/siyuan_streamer_mode",
