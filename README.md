@@ -22,9 +22,9 @@ This plugin is designed for the following scenarios:
 
 # Links  
 
- - Repository/Source Code: https://github.com/zxkmm/siyuan_marketplace_blacklist  
- - Download: Search "siyuan_marketpace_blacklist" in the marketplace or visit https://github.com/zxkmm/siyuan_marketplace_blacklist/releases  
- - Report bugs/ Submit feature requests: https://github.com/zxkmm/siyuan_marketplace_blacklist/issues
+ - Repository/Source Code: https://github.com/zxkmm/siyuan_streamer_mode  
+ - Download: Search "siyuan_marketpace_blacklist" in the marketplace or visit https://github.com/zxkmm/siyuan_streamer_mode/releases  
+ - Report bugs/ Submit feature requests: https://github.com/zxkmm/siyuan_streamer_mode/issues
 
 # Additional Attachment to MIT License
 

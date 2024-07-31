@@ -1,11 +1,17 @@
 {
-    "totalSwitch": "总开关",
-    "totalSwitchDesc": "此插件的功能开关",
-    "pluginBlacklistTitle": "集市内容黑名单",
-    "pluginBlacklistDesc": "输入你不想看到的插件/主题/图标/模板/挂件的包名。用英文或中文半角逗号分隔，例如 \",\" 或 \"，\"。",
-    "pluginBlacklistNoteTitle": "备注",
-    "pluginBlacklistNoteDesc": "你可以在这里做笔记，例如写下为什么不想看到某个插件。",
+    "totalSwitch": "主开关",
+    "totalSwitchDesc": "此插件的内部开关",
+    "eventBusSwitchProtyleSwitch": "事件总线 switch-protyle",
+    "eventBusSwitchProtyleSwitchDesc": "监听编辑器文件变更（静态）",
+    "eventBusClickEditorcontentSwitch": "事件总线 click-editorcontent",
+    "eventBusClickEditorcontentSwitchDesc": "监听编辑器内容点击（半动态）",
+    "eventBusWsMainSwitch": "事件总线 ws-main",
+    "eventBusWsMainSwitchDesc": "监听编辑操作（动态，注意性能）",
+    "keywordsBlacklistTitle": "关键词黑名单",
+    "keywordsBlacklistDesc": "输入您不想在直播中暴露的关键词。用英文或中文半角逗号分隔，即“,”或“，”。",
+    "keywordsBlacklistNoteTitle": "备注",
+    "keywordsBlacklistNoteDesc": "您可以在此处做笔记，例如写下要记录的关键词。",
     "hintTitle": "关于",
-    "hintDesc": "<ul><li>● 由 <a href='https://github.com/zxkmm'>zxkmm</a> 制作，并在 MIT 许可下开源。</li><li>● 如果你喜欢这个插件，请给我的 GitHub 仓库点个星⭐。</li><li>● 链接：<a href='https://github.com/zxkmm/siyuan_marketplace_blacklist'>https://github.com/zxkmm/siyuan_marketplace_blacklist</a></li><li>● 即使您不想看到特定的插件, 也请对您想隐藏的特定的插件的原作者保持友善, 并尊重他们的劳动成果, 谢谢! </li></ul>",
-    "uninstall_hint": "siyuan_marketplace_blacklist：卸载成功"
+    "hintDesc": "<ul><li>● 由 <a href='https://github.com/zxkmm'>zxkmm</a> 开发，基于 MIT 许可证开源。</li><li>● 如果您喜欢这个插件，请给我的 GitHub 仓库点个星⭐。</li><li>● 链接: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● 请注意，所有关键词都以明文形式保存在配置文件中，请注意您的隐私安全。</li></ul>",
+    "uninstall_hint": "siyuan_streamer_mode: 卸载成功"
 }
