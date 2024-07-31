@@ -10,6 +10,11 @@ Streamer Mode is a special feature provided by some software, particularly gamin
 
 This allows streamers to focus on their content without worrying about privacy leaks or harassment, enhancing the security and privacy protection of live streaming.
 
+# Credits
+- https://github.com/mdzz2048/siyuan-plugin-hsr by mdzz2048 for the highlight code
+- https://github.com/TCOTC/siyuan-plugin-hsr-mdzz2048-fork for the nice idea and highlight code
+- https://github.com/Misuzu2027/syplugin-document-search for the reference that porting from vue to classic TS or svelte
+
 # Disclaimer  
 
  - If you find this plugin useful, please consider giving my GitHub repository a free star⭐️. Thank you!  

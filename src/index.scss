@@ -24,3 +24,27 @@
         padding: 2px 8px;
     }
 }
+
+
+
+    //this css were ported from these repos:
+    //此css从如下仓库移植
+    //https://github.com/mdzz2048/siyuan-plugin-hsr by mdzz2048
+    //idea from https://github.com/TCOTC/siyuan-plugin-hsr-mdzz2048-fork by TCOTC AKA JerffreyChen
+    //谢谢!!!💓💓💓
+
+// .highlight-search-result {
+//     position: abslute;
+//     top: 135px;
+//     right: 10px;
+// }
+
+::highlight(blocked_text) {
+    background-color: black;
+    color: transparent;
+}
+
+// ::highlight(search-focus) {
+//     background-color: black;
+//     color: transparent;
+// }
