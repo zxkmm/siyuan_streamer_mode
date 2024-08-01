@@ -100,10 +100,24 @@ export default class siyuan_streamer_mode extends Plugin {
         this.settingUtils.get("keywordsBlacklist")
       );
 
-      if (this.settingUtils.get("eventBusSwitchProtyleSwitch")) {
-        this.eventBus.on("switch-protyle", () =>
-          this.blackOutKeyWords(_blacklist_words_)
-        );
+      if (this.settingUtils.get("doubleBlock")) {
+        if (this.settingUtils.get("eventBusSwitchProtyleSwitch")) {
+          this.eventBus.on("switch-protyle", () => {
+            setTimeout(() => {
+              this.blackOutKeyWords(_blacklist_words_);
+              setTimeout(() => {
+                this.blackOutKeyWords(_blacklist_words_);
+              }, 100); // before 2nd time
+              //TODO: this shouldnt hard coded...... it's a ok value here on my computer but should not hard coded
+            }, 0); // b4 1st tm
+          });
+        }
+      } else {
+        if (this.settingUtils.get("eventBusSwitchProtyleSwitch")) {
+          this.eventBus.on("switch-protyle", () => {
+            this.blackOutKeyWords(_blacklist_words_);
+          });
+        }
       }
 
       if (this.settingUtils.get("eventBusClickEditorcontentSwitch")) {
@@ -173,7 +187,7 @@ export default class siyuan_streamer_mode extends Plugin {
     });
     this.settingUtils.addItem({
       key: "eventBusLoadedProtyleStatic",
-      value: false,
+      value: true,
       type: "checkbox",
       title: this.i18n.eventBusLoadedProtyleStatic,
       description: this.i18n.eventBusLoadedProtyleStaticDesc,
@@ -184,6 +198,13 @@ export default class siyuan_streamer_mode extends Plugin {
       type: "checkbox",
       title: this.i18n.eventBusLoadedProtyleDynamic,
       description: this.i18n.eventBusLoadedProtyleDynamicDesc,
+    });
+    this.settingUtils.addItem({
+      key: "doubleBlock",
+      value: true,
+      type: "checkbox",
+      title: this.i18n.doubleBlock,
+      description: this.i18n.doubleBlockDesc,
     });
     this.settingUtils.addItem({
       key: "keywordsBlacklist",
@@ -632,9 +653,14 @@ export default class siyuan_streamer_mode extends Plugin {
     this.settingUtils.load();
 
     if (this.settingUtils.get("totalSwitch")) {
+      const _blacklist_words_ = this.convertStringToArray(
+        this.settingUtils.get("keywordsBlacklist")
+      );
+
+      this.blackOutKeyWords(_blacklist_words_); //do it once in anyway.
+
       this.init_event_bus_handler();
     }
-    // showMessage("主播模式插件：很抱歉，目前由于发现一个小技术缺陷导致该插件暂时禁用。");
   }
 
   async onunload() {

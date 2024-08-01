@@ -11,6 +11,8 @@
     "eventBusLoadedProtyleDynamic":"Event Bus loaded-protyle-dynamic",
     "eventBusLoadedProtyleDynamicDesc":"Editor loaded (dynamic, be mindful of performance)",
     "eventBusWsMainSwitchDesc": "Listen for editing operations (dynamic, be mindful of performance)",
+    "doubleBlock":"Double Block",
+    "doubleBlockDesc":"Block content twice with a slighly delay to cover the situations that some element didn't finished loading when apply blocking, this cost double performance, disable it if you have a low performance computer",
     "keywordsBlacklistTitle": "Keyword Blacklist",
     "keywordsBlacklistDesc": "Enter keywords you do not want to expose in your live stream. Separate them with a comma in English or Chinese, i.e., ',' or '，'.",
     "keywordsBlacklistNoteTitle": "Note",

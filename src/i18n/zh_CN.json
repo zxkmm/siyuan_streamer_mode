@@ -11,6 +11,8 @@
     "eventBusLoadedProtyleStaticDesc":"编辑器加载 （静态）",
     "eventBusLoadedProtyleDynamic":"事件总线 loaded-protyle-dynamic",
     "eventBusLoadedProtyleDynamicDesc":"编辑器加载（动态）",
+    "doubleBlock":"二次屏蔽",
+    "doubleBlockDesc":"延迟一定时间后再屏蔽一次。避免屏蔽后又有内容加载。耗双倍性能，若电脑不好（或者太卡）请禁用。",
     "keywordsBlacklistTitle": "关键词黑名单",
     "keywordsBlacklistDesc": "输入您不想在直播中暴露的关键词。用英文或中文半角逗号分隔，即“,”或“，”。",
     "keywordsBlacklistNoteTitle": "备注",
