@@ -19,5 +19,6 @@
     "keywordsBlacklistNoteDesc": "您可以在此处做笔记，例如写下要记录的关键词。",
     "hintTitle": "关于",
     "hintDesc": "<ul><li>● 由 <a href='https://github.com/zxkmm'>zxkmm</a> 开发，基于 MIT 许可证开源。</li><li>● 如果您喜欢这个插件，请给我的 GitHub 仓库点个星⭐。</li><li>● 链接: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● 请注意，所有关键词都以明文形式保存在配置文件中，请注意您的隐私安全。</li></ul>",
-    "uninstall_hint": "siyuan_streamer_mode: 卸载成功"
+    "uninstall_hint": "siyuan_streamer_mode: 卸载成功",
+    "streamerModeReveal":"主播模式：点击以切换揭露掩盖"
 }

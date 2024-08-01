@@ -19,5 +19,6 @@
     "keywordsBlacklistNoteDesc": "You can take notes here, for example, write down keywords you want to record.",
     "hintTitle": "About",
     "hintDesc": "<ul><li>● Developed by <a href='https://github.com/zxkmm'>zxkmm</a>, open-sourced under the MIT License.</li><li>● If you like this plugin, please star my GitHub repository⭐.</li><li>● Link: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● Please note that all keywords are stored in plain text in the configuration file, so be cautious about your privacy security.</li></ul>",
-    "uninstall_hint": "siyuan_streamer_mode: Uninstall successful"
+    "uninstall_hint": "siyuan_streamer_mode: Uninstall successful",
+    "streamerModeReveal":"Streamer Mode: Click to swap reveal"
 }
