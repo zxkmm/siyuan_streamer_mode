@@ -11,6 +11,8 @@ var isStreamerModeReveal = false;
 export default class siyuan_streamer_mode extends Plugin {
   private settingUtils: SettingUtils;
   private isMobile: boolean;
+  private eventBusHandlersRegistered = false;
+  private listenerRegistered = false;
 
   convertStringToArray(userInput) {
     if (userInput) {
@@ -25,6 +27,21 @@ export default class siyuan_streamer_mode extends Plugin {
     }
   }
 
+  /// copied from google ai, haven't tested yet.... TODO
+  
+  // private readonly splitRegex = /[,，]/;
+  // convertStringToArray(userInput: string): string[] {
+  //   if (userInput) {
+  //     return userInput.split(this.splitRegex).map((str) => str.trim());
+  //   } else {
+  //     return [];
+  //   }
+  // }
+  
+  /// ^^^
+
+
+
   blackOutKeyWords(_keywords_array_) {
     //this func were ported from these repos:
     //此函数从如下仓库移植
@@ -33,6 +50,15 @@ export default class siyuan_streamer_mode extends Plugin {
     //谢谢!!!💓💓💓
 
     // 创建 createTreeWalker 迭代器，用于遍历文本节点，保存到一个数组
+
+
+    /// should be same but put it here for the test anyways... TODO
+   
+    // if (isStreamerModeReveal) {
+    //   return;
+    // }
+   
+    /// ^^^
 
     if (!isStreamerModeReveal) {
       const treeWalker = document.createTreeWalker(
@@ -47,7 +73,7 @@ export default class siyuan_streamer_mode extends Plugin {
       }
 
       // // 清除上个高亮
-      // CSS.highlights.clear();
+      CSS.highlights.clear();
 
       // 存储所有找到的ranges
       let allRanges = [];
@@ -99,6 +125,10 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   init_event_bus_handler() {
+    if (this.eventBusHandlersRegistered) {
+      return; 
+    }
+
     isStreamerModeReveal = false;
 
     if (this.settingUtils.get("totalSwitch")) {
@@ -150,6 +180,8 @@ export default class siyuan_streamer_mode extends Plugin {
         );
       }
     }
+
+    this.eventBusHandlersRegistered = true;
   }
 
   offEventBusHandler() {
@@ -206,6 +238,7 @@ export default class siyuan_streamer_mode extends Plugin {
     }
 
     CSS.highlights.clear();
+    this.eventBusHandlersRegistered = false;
   }
 
   reloadInterface() {
@@ -220,7 +253,7 @@ export default class siyuan_streamer_mode extends Plugin {
         this.settingUtils.get("keywordsBlacklist")
       );
 
-      this.blackOutKeyWords(_blacklist_words_); //do it once in anyway.
+      this.blackOutKeyWords(_blacklist_words_);
       isStreamerModeReveal = false;
     } else {
       const userConfirmed = window.confirm(this.i18n.revealDoubleCheck);
@@ -232,13 +265,14 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   async protectBreadCrumb() {
-    if (this.settingUtils.get("totalSwitch") && !isStreamerModeReveal) {
+    if (this.settingUtils.get("totalSwitch")) {
       const targetNode = document.querySelector(".protyle-breadcrumb__bar");
       // console.log(targetNode);
 
       const config = { attributes: true, childList: true, subtree: true };
 
       const callback = async (mutationsList, observer) => {
+        // if (this.listenerRegistered){return;}
         for (let mutation of mutationsList) {
           if (mutation.type === "childList") {
             const _blacklist_words_ = this.convertStringToArray(
@@ -257,6 +291,8 @@ export default class siyuan_streamer_mode extends Plugin {
       const observer = new MutationObserver(callback);
 
       observer.observe(targetNode, config);
+      console.log("Breadcrumb listener registered");
+      this.listenerRegistered = true;
     }
   }
 
@@ -404,7 +440,7 @@ export default class siyuan_streamer_mode extends Plugin {
       this.init_event_bus_handler();
     }
 
-    if (this.settingUtils.get("listeningBreadcrumb")) {
+    if (this.settingUtils.get("listeningBreadcrumb") && !this.listenerRegistered) {
       this.protectBreadCrumb();
     }
   }
