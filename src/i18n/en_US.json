@@ -1,6 +1,7 @@
 {
     "warnTitle": "Disclaimer",
-    "warnDesc": "Although I strive to ensure that this feature is as effective as possible in protecting your privacy, due to the complexity and uncertainty of computer systems, we cannot guarantee absolute privacy protection. Specifically, we cannot completely rule out the risk of privacy content leakage due to technical failures, system errors, or other unforeseen factors, including but not limited to hard drive data reading, DOM operation errors, or delays in implementing privacy protection measures. This plugin can only aim to minimize visual privacy leaks. Please take additional precautions to protect your personal information security when using this feature. Continuing to use this feature indicates that you fully understand and accept the above risks (and I reserve the right to add and modify this agreement), and you agree to bear all consequences that may arise from privacy leakage. I advise you to regularly check and update your privacy protection measures and take all necessary steps to prevent your privacy information from being accessed or leaked without authorization."    "totalSwitch": "Main Switch",
+    "warnDesc": "Although I strive to ensure that this feature is as effective as possible in protecting your privacy, due to the complexity and uncertainty of computer systems, we cannot guarantee absolute privacy protection. Specifically, we cannot completely rule out the risk of privacy content leakage due to technical failures, system errors, or other unforeseen factors, including but not limited to hard drive data reading, DOM operation errors, or delays in implementing privacy protection measures. This plugin can only aim to minimize visual privacy leaks. Please take additional precautions to protect your personal information security when using this feature. Continuing to use this feature indicates that you fully understand and accept the above risks (and I reserve the right to add and modify this agreement), and you agree to bear all consequences that may arise from privacy leakage. I advise you to regularly check and update your privacy protection measures and take all necessary steps to prevent your privacy information from being accessed or leaked without authorization.",
+    "totalSwitch": "Main Switch",
     "totalSwitchDesc": "Internal switch for this plugin",
     "eventBusSwitchProtyleSwitch": "Event Bus switch-protyle",
     "eventBusSwitchProtyleSwitchDesc": "Listen for file changes in the editor (static)",
@@ -21,5 +22,9 @@
     "hintTitle": "About",
     "hintDesc": "<ul><li>● Developed by <a href='https://github.com/zxkmm'>zxkmm</a>, open-sourced under the MIT License.</li><li>● If you like this plugin, please star my GitHub repository⭐.</li><li>● Link: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● Please note that all keywords are stored in plain text in the configuration file, so be cautious about your privacy security.</li></ul>",
     "uninstall_hint": "siyuan_streamer_mode: Uninstall successful",
-    "streamerModeReveal":"Streamer Mode: Click to swap reveal"
+    "streamerModeReveal":"Streamer Mode: Click to swap reveal",
+    "revealDoubleCheck":"Are you sure you want to reveal? Please double check that you have stopped streaming!",
+    "forbidFirefoxAlert":"Streamer Mode Plugin: Sorry, this plugin does not support Firefox browser because the CSS API used by the plugin is not supported by Firefox. If you are streaming, please close the browser (do not click confirm aka OK or something) and switch to a browser with a Chromium kernel or SiYuan to avoid information leakage. Click confirm will disable the streamer mode and load the content, if you are streaming, please close the browser or tab directly.",
+    "listeningBreadcrumb":"Listening Breadcrumb",
+    "listeningBreadcrumbDesc":"Please note that this option will add a listener, be mindful of performance."
 }

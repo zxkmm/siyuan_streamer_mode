@@ -11,12 +11,12 @@
 主播模式：直播时避免泄漏敏感信息 （灵感来源于Discord app的主播模式）
 
 # 什么是主播模式
-Streamer Mode 是一些软件（尤其是游戏和直播软件）提供的一种特殊模式，用于在直播或录制视频时保护用户的隐私和安全。开启 Streamer Mode 后，软件会自动隐藏或屏蔽某些敏感信息，例如：
+Streamer Mode 是一些软件（尤其是游戏和直播软件）提供的一种特殊模式，用于在直播或录制视频时保护用户的隐私和安全。开启 Streamer Mode 后，软件会屏蔽某些敏感信息，例如：
 
 1. **个人信息**：用户名、电子邮件地址、真实姓名等。
-2. **通知**：来自其他应用程序的弹出通知或消息，以防止私人信息在直播时泄露。
-3. **IP地址**：防止观众通过直播获取主播的IP地址，从而进行恶意攻击。
-4. **链接**：自动屏蔽或模糊掉可能包含敏感信息的链接。
+2. **密码**：屏蔽你定义的敏感的密码。
+3. **IP地址**：屏蔽你定义的敏感的IP。
+4. **链接**：屏蔽你定义的敏感的链接。
 
 这样可以让主播在直播过程中不必担心隐私泄露或受到骚扰，提高直播的安全性和隐私保护。
 
@@ -27,7 +27,9 @@ Streamer Mode 是一些软件（尤其是游戏和直播软件）提供的一种
 # 致谢
 - https://github.com/mdzz2048/siyuan-plugin-hsr 由 mdzz2048 提供的高亮代码
 - https://github.com/TCOTC/siyuan-plugin-hsr-mdzz2048-fork 由 TCOTC 提供的优秀想法和高亮代码
-- https://github.com/Misuzu2027/syplugin-document-search 由 Misuzu2027 提供的从 Vue 移植到经典 TS 或 Svelte 的参考
+- https://github.com/Misuzu2027/syplugin-document-search 由 Misuzu2027 提供的高亮代码让我从 Vue 移植到经典 TS 有参考
+- https://github.com/leolee9086 由 leolee9086 提供的修复面包屑监听器的方案
+- https://github.com/frostime 由 Frostime 提供的修复面包屑监听器的方案
 
 # 链接  
 repo/源码：https://github.com/zxkmm/siyuan_streamer_mode  

@@ -3,17 +3,19 @@ Streamer Mode: Avoiding the Leakage of Sensitive Information During Live Streami
 # What is Streamer Mode?
 Streamer Mode is a special feature provided by some software, particularly gaming and live streaming applications, designed to protect users' privacy and security during live streaming or video recording. When Streamer Mode is activated, the software automatically hides or blocks certain sensitive information, such as:
 
-1. **Personal Information**: Usernames, email addresses, real names, etc.
-2. **Notifications**: Pop-up notifications or messages from other applications to prevent private information from being leaked during live streaming.
-3. **IP Address**: Prevents viewers from obtaining the streamer's IP address through the live stream, thereby preventing malicious attacks.
-4. **Links**: Automatically blocks or blurs links that may contain sensitive information.
+1. **Personal Information**: Automatically blocks usernames, email addresses, real names that you had choosen.
+2. **Passwords**: Automatically blocks passwords that you had choosen.
+3. **IP Address**: Automatically blocks IPs that you had choosen.
+4. **Links**: Automatically blocks links that you had choosen.
 
 This allows streamers to focus on their content without worrying about privacy leaks or harassment, enhancing the security and privacy protection of live streaming.
 
 # Credits
 - https://github.com/mdzz2048/siyuan-plugin-hsr by mdzz2048 for the highlight code
 - https://github.com/TCOTC/siyuan-plugin-hsr-mdzz2048-fork for the nice idea and highlight code
-- https://github.com/Misuzu2027/syplugin-document-search for the reference that porting from vue to classic TS or svelte
+- https://github.com/Misuzu2027/syplugin-document-search  Misuzu2027 offered code that helped me to port highlight code from Vue to classic TS.
+- https://github.com/leolee9086 leolee9086 offered the methods to fix breadcrum listener
+- https://github.com/frostime Frostime offered the methods to fix breadcrum listener
 
 # Disclaimer  
 

@@ -22,5 +22,9 @@
     "hintTitle": "关于",
     "hintDesc": "<ul><li>● 由 <a href='https://github.com/zxkmm'>zxkmm</a> 开发，基于 MIT 许可证开源。</li><li>● 如果您喜欢这个插件，请给我的 GitHub 仓库点个星⭐。</li><li>● 链接: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● 请注意，所有关键词都以明文形式保存在配置文件中，请注意您的隐私安全。</li></ul>",
     "uninstall_hint": "siyuan_streamer_mode: 卸载成功",
-    "streamerModeReveal":"主播模式：点击以切换揭露掩盖"
+    "streamerModeReveal":"主播模式：点击以切换揭露掩盖",
+    "revealDoubleCheck":"确定揭露掩盖吗？请二次确认你已经停止直播！",
+    "forbidFirefoxAlert": "主播模式插件：很抱歉，因为火狐浏览器不支持该插件所用的CSS API, 所以该插件不支持火狐浏览器。如果你在直播，请关闭浏览器（不要点击确认），并换用Chromium内核的浏览器或者思源本体，以避免信息泄露。点击确认将禁用主播模式并加载，如果你在直播，请直接关闭浏览器或者标签。",
+    "listeningBreadcrumb":"监听面包屑",
+    "listeningBreadcrumbDesc":"请注意，此选项会添加一个监听器，请注意性能。"
 }

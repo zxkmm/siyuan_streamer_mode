@@ -34,68 +34,68 @@ export default class siyuan_streamer_mode extends Plugin {
 
     // 创建 createTreeWalker 迭代器，用于遍历文本节点，保存到一个数组
 
-    isStreamerModeReveal = false;
+    if (!isStreamerModeReveal) {
+      const treeWalker = document.createTreeWalker(
+        document,
+        NodeFilter.SHOW_TEXT
+      );
+      const allTextNodes = [];
+      let currentNode = treeWalker.nextNode();
+      while (currentNode) {
+        allTextNodes.push(currentNode);
+        currentNode = treeWalker.nextNode();
+      }
 
-    const treeWalker = document.createTreeWalker(
-      document,
-      NodeFilter.SHOW_TEXT
-    );
-    const allTextNodes = [];
-    let currentNode = treeWalker.nextNode();
-    while (currentNode) {
-      allTextNodes.push(currentNode);
-      currentNode = treeWalker.nextNode();
-    }
+      // // 清除上个高亮
+      // CSS.highlights.clear();
 
-    // // 清除上个高亮
-    // CSS.highlights.clear();
+      // 存储所有找到的ranges
+      let allRanges = [];
 
-    // 存储所有找到的ranges
-    let allRanges = [];
+      // 遍历关键词数组
+      _keywords_array_.forEach((keyword) => {
+        // 为空判断
+        const str = keyword.trim().toLowerCase();
+        if (!str) return;
 
-    // 遍历关键词数组
-    _keywords_array_.forEach((keyword) => {
-      // 为空判断
-      const str = keyword.trim().toLowerCase();
-      if (!str) return;
+        // 查找所有文本节点是否包含搜索词
+        const ranges = allTextNodes
+          .map((el) => {
+            return { el, text: el.textContent.toLowerCase() };
+          })
+          .map(({ el, text }) => {
+            const indices = [];
+            let startPos = 0;
+            while (startPos < text.length) {
+              const index = text.indexOf(str, startPos);
+              if (index === -1) break;
+              indices.push(index);
+              startPos = index + str.length;
+            }
 
-      // 查找所有文本节点是否包含搜索词
-      const ranges = allTextNodes
-        .map((el) => {
-          return { el, text: el.textContent.toLowerCase() };
-        })
-        .map(({ el, text }) => {
-          const indices = [];
-          let startPos = 0;
-          while (startPos < text.length) {
-            const index = text.indexOf(str, startPos);
-            if (index === -1) break;
-            indices.push(index);
-            startPos = index + str.length;
-          }
-
-          // 根据搜索词的位置创建选区
-          return indices.map((index) => {
-            const range = new Range();
-            range.setStart(el, index);
-            range.setEnd(el, index + str.length);
-            return range;
+            // 根据搜索词的位置创建选区
+            return indices.map((index) => {
+              const range = new Range();
+              range.setStart(el, index);
+              range.setEnd(el, index + str.length);
+              return range;
+            });
           });
-        });
 
-      // 合并ranges
-      allRanges = allRanges.concat(ranges.flat());
-    });
+        // 合并ranges
+        allRanges = allRanges.concat(ranges.flat());
+      });
 
-    // 创建高亮对象
-    const keywordsHighlight = new Highlight(...allRanges);
-    const keywordsCount = allRanges.length;
-    const keywordsRange = allRanges;
+      // 创建高亮对象
+      const keywordsHighlight = new Highlight(...allRanges);
+      const keywordsCount = allRanges.length;
+      const keywordsRange = allRanges;
 
-    // 注册高亮
-    CSS.highlights.set("blocked_text", keywordsHighlight);
+      // 注册高亮
+      CSS.highlights.set("blocked_text", keywordsHighlight);
 
-    return { kwdCount: keywordsCount, kwdRange: keywordsRange };
+      return { kwdCount: keywordsCount, kwdRange: keywordsRange };
+    }
   }
 
   init_event_bus_handler() {
@@ -150,8 +150,6 @@ export default class siyuan_streamer_mode extends Plugin {
         );
       }
     }
-
-    // this.protectBreadCrumb();
   }
 
   offEventBusHandler() {
@@ -216,8 +214,6 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   swapStreamerMode() {
-    // console.log("---");
-    // console.log(isStreamerModeReveal);
     if (isStreamerModeReveal) {
       this.init_event_bus_handler();
       const _blacklist_words_ = this.convertStringToArray(
@@ -227,39 +223,42 @@ export default class siyuan_streamer_mode extends Plugin {
       this.blackOutKeyWords(_blacklist_words_); //do it once in anyway.
       isStreamerModeReveal = false;
     } else {
-      this.offEventBusHandler();
-      isStreamerModeReveal = true;
+      const userConfirmed = window.confirm(this.i18n.revealDoubleCheck);
+      if (userConfirmed) {
+        this.offEventBusHandler();
+        isStreamerModeReveal = true;
+      }
     }
   }
 
-  // async protectBreadCrumb() {
-  //   if (this.settingUtils.get("totalSwitch") && !isStreamerModeReveal) {
-  //     const targetNode = document.querySelector(
-  //       ".protyle-breadcrumb__bar"
-  //     );
-  //     console.log(targetNode);
+  async protectBreadCrumb() {
+    if (this.settingUtils.get("totalSwitch") && !isStreamerModeReveal) {
+      const targetNode = document.querySelector(".protyle-breadcrumb__bar");
+      // console.log(targetNode);
 
-  //     const config = { attributes: true, childList: true, subtree: true };
+      const config = { attributes: true, childList: true, subtree: true };
 
-  //     const callback = async function (mutationsList, observer) {
-  //       for (let mutation of mutationsList) {
-  //         if (mutation.type === "childList") {
-  //           const _blacklist_words_ = this.convertStringToArray(
-  //             await this.settingUtils.get("keywordsBlacklist")
-  //           );
-      
-  //           this.blackOutKeyWords(_blacklist_words_); //do it once in anyway.
-  //           // } else if (mutation.type === "attributes") {
-  //           //   console.log(mutation.attributeName);
-  //         }
-  //       }
-  //     };
+      const callback = async (mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+          if (mutation.type === "childList") {
+            const _blacklist_words_ = this.convertStringToArray(
+              await this.settingUtils.get("keywordsBlacklist")
+            );
 
-  //     const observer = new MutationObserver(callback);
+            // console.log(this);
+            this.blackOutKeyWords(_blacklist_words_); //do it once in anyway.
+            // } else if (mutation.type === "attributes") {
+            //   console.log(mutation.attributeName);
+            // console.log("did");
+          }
+        }
+      };
 
-  //     observer.observe(targetNode, config);
-  //   }
-  // }
+      const observer = new MutationObserver(callback);
+
+      observer.observe(targetNode, config);
+    }
+  }
 
   async onload() {
     const frontEnd = getFrontend();
@@ -324,6 +323,13 @@ export default class siyuan_streamer_mode extends Plugin {
       description: this.i18n.doubleBlockDesc,
     });
     this.settingUtils.addItem({
+      key: "listeningBreadcrumb",
+      value: true,
+      type: "checkbox",
+      title: this.i18n.listeningBreadcrumb,
+      description: this.i18n.listeningBreadcrumbDesc,
+    });
+    this.settingUtils.addItem({
       key: "keywordsBlacklist",
       value: "",
       type: "textarea",
@@ -353,12 +359,14 @@ export default class siyuan_streamer_mode extends Plugin {
 
     const topBarElement = this.addTopBar({
       icon: "iconStreamer",
-      title: isStreamerModeReveal ? this.i18n.streamerModeUnreveal : this.i18n.streamerModeReveal,
+      title: isStreamerModeReveal
+        ? this.i18n.streamerModeUnreveal
+        : this.i18n.streamerModeReveal,
       position: "right",
       callback: () => {
         if (this.isMobile) {
           // this.addMenu();
-          console.log("mobile");
+          // console.log("mobile");
         } else {
           let rect = topBarElement.getBoundingClientRect();
           // 如果被隐藏，则使用更多按钮
@@ -377,6 +385,12 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   onLayoutReady() {
+    // Check if the browser is Firefox
+    if (navigator.userAgent.includes("Firefox")) {
+      alert(this.i18n.forbidFirefoxAlert);
+      return;
+    }
+
     this.loadData(STORAGE_NAME);
     this.settingUtils.load();
 
@@ -389,14 +403,20 @@ export default class siyuan_streamer_mode extends Plugin {
 
       this.init_event_bus_handler();
     }
+
+    if (this.settingUtils.get("listeningBreadcrumb")) {
+      this.protectBreadCrumb();
+    }
   }
 
   async onunload() {
+    CSS.highlights.clear();
     await this.settingUtils.save();
     // this.reloadInterface();
   }
 
   uninstall() {
+    CSS.highlights.clear();
     this.removeData(STORAGE_NAME);
     showMessage(this.i18n.uninstall_hint);
   }
