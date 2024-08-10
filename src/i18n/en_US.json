@@ -23,8 +23,13 @@
     "hintDesc": "<ul><li>● Developed by <a href='https://github.com/zxkmm'>zxkmm</a>, open-sourced under the MIT License.</li><li>● If you like this plugin, please star my GitHub repository⭐.</li><li>● Link: <a href='https://github.com/zxkmm/siyuan_streamer_mode'>https://github.com/zxkmm/siyuan_streamer_mode</a></li><li>● Please note that all keywords are stored in plain text in the configuration file, so be cautious about your privacy security.</li></ul>",
     "uninstall_hint": "siyuan_streamer_mode: Uninstall successful",
     "streamerModeReveal":"Streamer Mode: Click to swap reveal",
+    "streamerModeRevealMobile":"Swap reveal",
+    "streamerModeRevealMobileNoti":"Swapped, double check you have stopped streaming.",
+    "streamerModeMenu":"Streamer Mode",
     "revealDoubleCheck":"Are you sure you want to reveal? Please double check that you have stopped streaming!",
+    "revealDoubleCheckMobile":"Before, reveal, please double check that you have stopped streaming!",
     "forbidFirefoxAlert":"Streamer Mode Plugin: Sorry, this plugin does not support Firefox browser because the CSS API used by the plugin is not supported by Firefox. If you are streaming, please close the browser (do not click confirm aka OK or something) and switch to a browser with a Chromium kernel or SiYuan to avoid information leakage. Click confirm will disable the streamer mode and load the content, if you are streaming, please close the browser or tab directly.",
     "listeningBreadcrumb":"Listening Breadcrumb",
-    "listeningBreadcrumbDesc":"Please note that this option will add a listener, be mindful of performance."
+    "listeningBreadcrumbDesc":"Please note that this option will add a listener, be mindful of performance.",
+    "settings":"Settings"
 }

@@ -8,12 +8,14 @@
     "windows",
     "linux",
     "darwin",
-    "docker"
+    "docker",
+    "android"
   ],
   "frontends": [
     "desktop",
     "browser-desktop",
-    "desktop-window"
+    "desktop-window",
+    "mobile"
   ],
   "displayName": {
     "en_US": "siyuan_streamer_mode",

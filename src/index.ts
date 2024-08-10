@@ -1,4 +1,4 @@
-import { Plugin, showMessage, getFrontend } from "siyuan";
+import { Plugin, showMessage, getFrontend, Menu } from "siyuan";
 import "@/index.scss";
 
 import { SettingUtils } from "./libs/setting-utils";
@@ -28,7 +28,7 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   /// copied from google ai, haven't tested yet.... TODO
-  
+
   // private readonly splitRegex = /[,，]/;
   // convertStringToArray(userInput: string): string[] {
   //   if (userInput) {
@@ -37,10 +37,8 @@ export default class siyuan_streamer_mode extends Plugin {
   //     return [];
   //   }
   // }
-  
+
   /// ^^^
-
-
 
   blackOutKeyWords(_keywords_array_) {
     //this func were ported from these repos:
@@ -51,13 +49,12 @@ export default class siyuan_streamer_mode extends Plugin {
 
     // 创建 createTreeWalker 迭代器，用于遍历文本节点，保存到一个数组
 
-
     /// should be same but put it here for the test anyways... TODO
-   
+
     // if (isStreamerModeReveal) {
     //   return;
     // }
-   
+
     /// ^^^
 
     if (!isStreamerModeReveal) {
@@ -126,7 +123,7 @@ export default class siyuan_streamer_mode extends Plugin {
 
   init_event_bus_handler() {
     if (this.eventBusHandlersRegistered) {
-      return; 
+      return;
     }
 
     isStreamerModeReveal = false;
@@ -247,19 +244,36 @@ export default class siyuan_streamer_mode extends Plugin {
   }
 
   swapStreamerMode() {
-    if (isStreamerModeReveal) {
-      this.init_event_bus_handler();
-      const _blacklist_words_ = this.convertStringToArray(
-        this.settingUtils.get("keywordsBlacklist")
-      );
+    console.log("swap");
+    if (this.isMobile) {
+      if (isStreamerModeReveal) {
+        this.init_event_bus_handler();
+        const _blacklist_words_ = this.convertStringToArray(
+          this.settingUtils.get("keywordsBlacklist")
+        );
 
-      this.blackOutKeyWords(_blacklist_words_);
-      isStreamerModeReveal = false;
+        this.blackOutKeyWords(_blacklist_words_);
+        isStreamerModeReveal = false;
+      } else {
+          this.offEventBusHandler();
+          isStreamerModeReveal = true;
+        
+      }
     } else {
-      const userConfirmed = window.confirm(this.i18n.revealDoubleCheck);
-      if (userConfirmed) {
-        this.offEventBusHandler();
-        isStreamerModeReveal = true;
+      if (isStreamerModeReveal) {
+        this.init_event_bus_handler();
+        const _blacklist_words_ = this.convertStringToArray(
+          this.settingUtils.get("keywordsBlacklist")
+        );
+
+        this.blackOutKeyWords(_blacklist_words_);
+        isStreamerModeReveal = false;
+      } else {
+        const userConfirmed = window.confirm(this.i18n.revealDoubleCheck);
+        if (userConfirmed) {
+          this.offEventBusHandler();
+          isStreamerModeReveal = true;
+        }
       }
     }
   }
@@ -268,6 +282,10 @@ export default class siyuan_streamer_mode extends Plugin {
     if (this.settingUtils.get("totalSwitch")) {
       const targetNode = document.querySelector(".protyle-breadcrumb__bar");
       // console.log(targetNode);
+      if (!targetNode) {
+        // mobile doesnt have breadcrumb
+        return;
+      }
 
       const config = { attributes: true, childList: true, subtree: true };
 
@@ -395,14 +413,15 @@ export default class siyuan_streamer_mode extends Plugin {
 
     const topBarElement = this.addTopBar({
       icon: "iconStreamer",
-      title: isStreamerModeReveal
-        ? this.i18n.streamerModeUnreveal
+      title: this.isMobile
+        ? this.i18n.streamerModeMenu
         : this.i18n.streamerModeReveal,
       position: "right",
       callback: () => {
         if (this.isMobile) {
-          // this.addMenu();
+          this.addMenu();
           // console.log("mobile");
+          
         } else {
           let rect = topBarElement.getBoundingClientRect();
           // 如果被隐藏，则使用更多按钮
@@ -440,7 +459,10 @@ export default class siyuan_streamer_mode extends Plugin {
       this.init_event_bus_handler();
     }
 
-    if (this.settingUtils.get("listeningBreadcrumb") && !this.listenerRegistered) {
+    if (
+      this.settingUtils.get("listeningBreadcrumb") &&
+      !this.listenerRegistered
+    ) {
       this.protectBreadCrumb();
     }
   }
@@ -456,4 +478,67 @@ export default class siyuan_streamer_mode extends Plugin {
     this.removeData(STORAGE_NAME);
     showMessage(this.i18n.uninstall_hint);
   }
+
+  private addMenu(rect?: DOMRect) {
+    const menu = new Menu("topBarSample", () => {
+        console.log(this.i18n.byeMenu);
+    });
+
+    if (!this.isMobile) {
+
+
+
+
+        menu.addItem({
+            icon: "iconLayout",
+            label: "Open Float Layer(open help first)",
+            click: () => {
+                this.addFloatLayer({
+                    ids: ["20210428212840-8rqwn5o", "20201225220955-l154bn4"],
+                    defIds: ["20230415111858-vgohvf3", "20200813131152-0wk5akh"],
+                    x: window.innerWidth - 768 - 120,
+                    y: 32
+                });
+            }
+        });
+
+    } else {
+        menu.addItem({
+            icon: "iconStreamer",
+            label: this.i18n.streamerModeRevealMobile,
+            click: () => {
+              this.swapStreamerMode();
+              showMessage(this.i18n.streamerModeRevealMobileNoti);
+            }
+        });
+    }
+    menu.addItem({
+      icon: "iconInfo",
+      label: this.i18n.revealDoubleCheckMobile,
+      type: "readonly",
+  });
+
+
+    menu.addSeparator();
+    menu.addItem({
+        icon: "iconSettings",
+        label: "Official Setting Dialog",
+        click: () => {
+            this.openSetting();
+        }
+    });
+
+
+    if (this.isMobile) {
+        menu.fullscreen();
+    } else {
+        menu.open({
+            x: rect.right,
+            y: rect.bottom,
+            isLeft: true,
+        });
+    }
+}
+
+
 }
