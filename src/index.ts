@@ -255,9 +255,8 @@ export default class siyuan_streamer_mode extends Plugin {
         this.blackOutKeyWords(_blacklist_words_);
         isStreamerModeReveal = false;
       } else {
-          this.offEventBusHandler();
-          isStreamerModeReveal = true;
-        
+        this.offEventBusHandler();
+        isStreamerModeReveal = true;
       }
     } else {
       if (isStreamerModeReveal) {
@@ -320,13 +319,6 @@ export default class siyuan_streamer_mode extends Plugin {
 
     this.settingUtils = new SettingUtils(this, STORAGE_NAME);
     this.settingUtils.load();
-    this.settingUtils.addItem({
-      key: "warn",
-      value: "",
-      type: "hint",
-      title: this.i18n.warnTitle,
-      description: this.i18n.warnDesc,
-    });
     this.settingUtils.addItem({
       key: "totalSwitch",
       value: true,
@@ -398,6 +390,13 @@ export default class siyuan_streamer_mode extends Plugin {
       description: this.i18n.keywordsBlacklistNoteDesc,
     });
     this.settingUtils.addItem({
+      key: "warn",
+      value: "",
+      type: "hint",
+      title: this.i18n.warnTitle,
+      description: this.i18n.warnDesc,
+    });
+    this.settingUtils.addItem({
       key: "hint",
       value: "",
       type: "hint",
@@ -411,32 +410,6 @@ export default class siyuan_streamer_mode extends Plugin {
         </symbol>
         `);
 
-    const topBarElement = this.addTopBar({
-      icon: "iconStreamer",
-      title: this.isMobile
-        ? this.i18n.streamerModeMenu
-        : this.i18n.streamerModeReveal,
-      position: "right",
-      callback: () => {
-        if (this.isMobile) {
-          this.addMenu();
-          // console.log("mobile");
-          
-        } else {
-          let rect = topBarElement.getBoundingClientRect();
-          // 如果被隐藏，则使用更多按钮
-          if (rect.width === 0) {
-            rect = document.querySelector("#barMore").getBoundingClientRect();
-          }
-          if (rect.width === 0) {
-            rect = document
-              .querySelector("#barPlugins")
-              .getBoundingClientRect();
-          }
-          this.swapStreamerMode();
-        }
-      },
-    });
   }
 
   onLayoutReady() {
@@ -449,7 +422,37 @@ export default class siyuan_streamer_mode extends Plugin {
     this.loadData(STORAGE_NAME);
     this.settingUtils.load();
 
+
+
     if (this.settingUtils.get("totalSwitch")) {
+
+      const topBarElement = this.addTopBar({
+        icon: "iconStreamer",
+        title: this.isMobile
+          ? this.i18n.streamerModeMenu
+          : this.i18n.streamerModeReveal,
+        position: "right",
+        callback: () => {
+          if (this.isMobile) {
+            this.addMenu();
+            // console.log("mobile");
+          } else {
+            let rect = topBarElement.getBoundingClientRect();
+            // 如果被隐藏，则使用更多按钮
+            if (rect.width === 0) {
+              rect = document.querySelector("#barMore").getBoundingClientRect();
+            }
+            if (rect.width === 0) {
+              rect = document
+                .querySelector("#barPlugins")
+                .getBoundingClientRect();
+            }
+            this.swapStreamerMode();
+          }
+        },
+      });
+
+
       const _blacklist_words_ = this.convertStringToArray(
         this.settingUtils.get("keywordsBlacklist")
       );
@@ -481,64 +484,55 @@ export default class siyuan_streamer_mode extends Plugin {
 
   private addMenu(rect?: DOMRect) {
     const menu = new Menu("topBarSample", () => {
-        console.log(this.i18n.byeMenu);
+      console.log(this.i18n.byeMenu);
     });
 
     if (!this.isMobile) {
-
-
-
-
-        menu.addItem({
-            icon: "iconLayout",
-            label: "Open Float Layer(open help first)",
-            click: () => {
-                this.addFloatLayer({
-                    ids: ["20210428212840-8rqwn5o", "20201225220955-l154bn4"],
-                    defIds: ["20230415111858-vgohvf3", "20200813131152-0wk5akh"],
-                    x: window.innerWidth - 768 - 120,
-                    y: 32
-                });
-            }
-        });
-
+      menu.addItem({
+        icon: "iconLayout",
+        label: "Open Float Layer(open help first)",
+        click: () => {
+          this.addFloatLayer({
+            ids: ["20210428212840-8rqwn5o", "20201225220955-l154bn4"],
+            defIds: ["20230415111858-vgohvf3", "20200813131152-0wk5akh"],
+            x: window.innerWidth - 768 - 120,
+            y: 32,
+          });
+        },
+      });
     } else {
-        menu.addItem({
-            icon: "iconStreamer",
-            label: this.i18n.streamerModeRevealMobile,
-            click: () => {
-              this.swapStreamerMode();
-              showMessage(this.i18n.streamerModeRevealMobileNoti);
-            }
-        });
+      menu.addItem({
+        icon: "iconStreamer",
+        label: this.i18n.streamerModeRevealMobile,
+        click: () => {
+          this.swapStreamerMode();
+          showMessage(this.i18n.streamerModeRevealMobileNoti);
+        },
+      });
     }
     menu.addItem({
       icon: "iconInfo",
       label: this.i18n.revealDoubleCheckMobile,
       type: "readonly",
-  });
-
+    });
 
     menu.addSeparator();
     menu.addItem({
-        icon: "iconSettings",
-        label: "Official Setting Dialog",
-        click: () => {
-            this.openSetting();
-        }
+      icon: "iconSettings",
+      label: "Official Setting Dialog",
+      click: () => {
+        this.openSetting();
+      },
     });
 
-
     if (this.isMobile) {
-        menu.fullscreen();
+      menu.fullscreen();
     } else {
-        menu.open({
-            x: rect.right,
-            y: rect.bottom,
-            isLeft: true,
-        });
+      menu.open({
+        x: rect.right,
+        y: rect.bottom,
+        isLeft: true,
+      });
     }
-}
-
-
+  }
 }

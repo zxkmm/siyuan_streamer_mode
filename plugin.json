@@ -2,7 +2,7 @@
   "name": "siyuan_streamer_mode",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_streamer_mode",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "minAppVersion": "2.11.4",
   "backends": [
     "windows",
