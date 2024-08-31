@@ -2,7 +2,7 @@
   "name": "siyuan_streamer_mode",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_streamer_mode",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "minAppVersion": "2.11.4",
   "backends": [
     "windows",
@@ -19,11 +19,11 @@
   ],
   "displayName": {
     "en_US": "siyuan_streamer_mode",
-    "zh_CN": "主播模式"
+    "zh_CN": "隐私模式"
   },
   "description": {
     "en_US": "Streamer mode for SiYuan.",
-    "zh_CN": "直播时掩盖敏感信息"
+    "zh_CN": "掩盖敏感信息"
   },
   "readme": {
     "en_US": "README.md",
@@ -35,6 +35,6 @@
     ]
   },
   "keywords": [
-    "集市", "黑名单", "主播模式", "隐藏", "移除", "streamer", "blacklist", "blocklist", "remove", "hide"
+    "集市", "黑名单", "主播模式", "隐藏", "移除", "streamer", "blacklist", "blocklist", "remove", "hide","隐私模式"
   ]
 }
