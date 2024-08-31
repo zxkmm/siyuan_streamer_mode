@@ -472,7 +472,7 @@ export default class siyuan_streamer_mode extends Plugin {
 
   async onunload() {
     CSS.highlights.clear();
-    await this.settingUtils.save();
+    // await this.settingUtils.save(); //this could probably cause load old settings
     // this.reloadInterface();
   }
 
